@@ -4,7 +4,7 @@ CLEAN=false
 
 while getopts :c opt; do
     case $opt in
-        c) clean=true ;;
+        c) CLEAN=true ;;
         \?) echo "Unknown option -$OPTARG"; exit 1;
     esac
 done
