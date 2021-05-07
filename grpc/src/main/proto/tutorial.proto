@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "tutorial";
+option java_outer_classname = "TutorialProto";
+option objc_class_prefix = "HLW";
+
+package tutorial;
+
+service Calculator {
+    rpc Add (AddRequest) returns (AddReply) {}
+}
+
+message AddRequest {
+    int32 operandA = 1;
+    int32 operandB = 2;
+}
+
+message AddReply {
+    int32 result = 1;
+}
