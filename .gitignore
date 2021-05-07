@@ -1,3 +1,4 @@
-/rest/target/
-/rest/glassfish5/
+/rest/*/target/
+/rest/server/glassfish5/
+/rest/*/.idea/
 /rest/.idea/
