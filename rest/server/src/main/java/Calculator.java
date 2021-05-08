@@ -1,6 +1,7 @@
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.File;
 
 @Path("/calculator")
 public class Calculator {
@@ -30,5 +31,15 @@ public class Calculator {
         } else {
             return Response.serverError().entity("Operation not supported").build();
         }
+    }
+
+    @GET
+    @Path("/file")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    public Response getFile() {
+        File file = new File("~/Downloads/100MB.zip");// Initialize this to the File path you want to serve.
+        return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM)
+                .header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"") //optional
+                .build();
     }
 }

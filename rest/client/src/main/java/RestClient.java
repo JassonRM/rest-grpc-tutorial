@@ -18,6 +18,14 @@ public class RestClient {
                 .get();
     }
 
+    public static Response file() {
+        return client
+                .target(REST_URI)
+                .path("file")
+                .request(MediaType.APPLICATION_OCTET_STREAM)
+                .get();
+    }
+
     public static CalculatorOperation getAddition(int operandA, int operandB) {
         return client
                 .target(REST_URI)
@@ -37,6 +45,13 @@ public class RestClient {
                 .post(Entity.entity(operation, MediaType.APPLICATION_JSON), CalculatorOperation.class);
     }
 
+    public static long timeTest() {
+        long start = System.currentTimeMillis();
+        file();
+        long finish = System.currentTimeMillis();
+        return finish - start;
+    }
+
     public static void main(String[] args) {
         Response response = ping();
         System.out.println(response.readEntity(String.class));
@@ -49,5 +64,6 @@ public class RestClient {
         operation = postAddition(operation);
         System.out.printf("%d+%d=%d\n", operation.operandA, operation.operandB, operation.result);
 
+        System.out.printf("Time: %dms\n", timeTest());
     }
 }
